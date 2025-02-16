@@ -125,15 +125,17 @@ usethis::create_from_github("https://github.com/OWNER/REPO")
 
 -   Do not make commits to the main of a repo you have forked - this will create discrepancies
 
--   Instead: Use a pull request!
+-   Instead: Use a pull request
 
 ![](images/Screenshot 2025-02-16 at 21.09.25.png)
 
 ## What if you have messed with the main?
 
+-   It's recommended to always work in a new branch and not in the main of your forked repo
+
 -   In this case no problem, we can sync the fork
 
--   However, we may run into issues if fork and original main diverge or the fork is ahead
+-   However, we may run into issues
 
 ![](images/Screenshot 2025-02-16 at 21.10.55.png)
 
@@ -157,11 +159,25 @@ usethis::create_from_github("https://github.com/OWNER/REPO")
 
 ![](images/Screenshot 2025-02-16 at 23.16.12.png)
 
-## 
+## Get changes from upstream
+
+-   Create a new branch (treat main as read-only)
+
+![](images/Screenshot 2025-02-16 at 23.29.44.png)
+
+## Sync by pulling changes from upstream, then push to origin
+
+-   `git pull upstream main --ff-only` and then `git push origin main`
+
+## Sync by pulling changes from the origin repo
+
+## What if you touched the main?
 
 # Chapter 33 - Explore and extend a pull request
 
 ## Explore and extend a pull request
+
+![](images/Screenshot 2025-02-16 at 23.55.12.png)
 
 # Chapter 34 - Make a Github repo browsable
 
