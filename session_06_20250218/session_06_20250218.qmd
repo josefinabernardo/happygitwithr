@@ -65,11 +65,99 @@ format:
 
 ## Method A: Browser, command line and RStudio
 
+-   Click fork on the Github page of the original repo (OWNER/REPO) - creates a copy in your account (YOU/REPO)
+
+-   Clone the newly create YOU/REPO onto your machine
+
+-   Highly recommended: Configure the upstream remote in one of these ways
+
+    -   `git remote add upstream https://github.com/OWNER/REPO.git`
+
+    -   `usethis::use_git_remote(name = "upstream", url = "https://github.com/OWNER/REPO.git")`
+
+    -   Clicking on new branch and pasting the link of the original rep
+
+![](https://happygitwithr.com/img/rstudio-new-branch.png)
+
+-   Use `git fetch upstream` to pull changes from the upstream
+
+-   Use `git branch -u upstream/main` to set the original repo as the tracking branch for your local branch
+
+-   Pushes to and pulls from the original repo automatically
+
 ## Method B: `create_from_github()`
+
+-   This is much quicker and easier
+
+```         
+usethis::create_from_github("https://github.com/OWNER/REPO")
+```
+
+-   Automatically stets the upstream as the tracking branch
+
+## Method C: Github Desktop
+
+-   Download Github Desktop and connect your Github account
+
+-   Fork the repository in Github, then clone
+
+![](images/Screenshot 2025-02-16 at 20.24.48.png)
+
+-   Same advantages as `create_from_github()`
+
+## Method C: Github Desktop
+
+-   Might be a good option if you want to avoid using the command line altogether and prefer GUI
+
+![](images/Screenshot 2025-02-16 at 20.41.11.png)
+
+## Some useful commands
+
+-   `git remote -v`
+
+![](images/Screenshot 2025-02-16 at 20.43.35.png)
+
+-   `git remote show origin`
+
+![](images/Screenshot 2025-02-16 at 21.04.36.png)
+
+## Don't mess with main
+
+-   Do not make commits to the main of a repo you have forked - this will create discrepancies
+
+-   Instead: Use a pull request!
+
+![](images/Screenshot 2025-02-16 at 21.09.25.png)
+
+## What if you have messed with the main?
+
+-   In this case no problem, we can sync the fork
+
+-   However, we may run into issues if fork and original main diverge or the fork is ahead
+
+![](images/Screenshot 2025-02-16 at 21.10.55.png)
 
 # Chapter 32 - Get upstream changes for a fork
 
-## Get upstream changes for a fork
+## When do we need to get upstream changes?
+
+-   This is meant for when we fork & clone and there is an update to the OWNER/REPO (source repo)
+
+![](https://happygitwithr.com/img/fork-them-pull-request.jpeg)
+
+## Preparing for getting upstream changes
+
+-   List your remotes:
+
+    -   `git remote -v` in the command line
+
+    -   `usethis::git_remotes()` in the console
+
+-   Use `git branch -vv` to view the upstream tracking branch
+
+![](images/Screenshot 2025-02-16 at 23.16.12.png)
+
+## 
 
 # Chapter 33 - Explore and extend a pull request
 
@@ -106,162 +194,3 @@ output: github_document
 ```
 
 ## 
-
-## Quarto
-
-Quarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see <https://quarto.org/docs/presentations/>.
-
-> This is part of the [Quarto documentation](https://quarto.org/docs/presentations/).
-
-## Bullets
-
-When you click the **Render** button a document will be generated that includes:
-
--   Content authored with markdown
--   Output from executable code
-
-> This is part of the [Quarto documentation](https://quarto.org/docs/presentations/).
-
-## Code
-
-When you click the **Render** button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:
-
-```{r}
-#| echo: true
-1 + 1
-```
-
-> This is part of the [Quarto documentation](https://quarto.org/docs/presentations/).
-
-You can also add `text marked as code`!
-
-# New topic! {background-color="#562457"}
-
-To make a slide like this, use:
-
-```         
-# Title of slide {background-color="#562457"}
-```
-
-## Tabset example
-
-::: panel-tabset
-## Example 1
-
-Content here for tabset 1 :)
-
-## Example 2
-
-More content here, for tabset 2 :)
-:::
-
-## Incremental content
-
-Hi!
-
-. . .
-
-Use `. . .` to separate content as an incremental slide!
-
-## You can add R code
-
-```{r}
-#| echo: true
-library(dplyr)
-library(ggplot2)
-g <- starwars |> 
-  ggplot() +
-  geom_point(aes(x = height, y = mass)) +
-  theme_light()
-```
-
-## And show the results aswell :)
-
-```{r}
-#| fig.align: center
-#| echo: true
-g 
-```
-
-## What about tables? {.smaller}
-
-### `knitr::kable()`
-
-::: columns
-::: {.column width="50%"}
-```{r}
-#| label: kable-ex
-#| echo: true
-#| eval: false
-tab <- starwars |>
-  tidyr::drop_na(species) |> 
-  group_by(species) |>
-  summarise(
-    n = n(),
-    mean_heigth = round(mean(height, na.rm = TRUE)),
-    mean_mass = round(mean(mass, na.rm = TRUE))
-  ) |> 
-  slice_max(order_by = n, n = 4) 
-
-knitr::kable(tab)
-```
-:::
-
-::: {.column width="50%"}
-```{r}
-#| label: kable-ex
-#| eval: true
-```
-:::
-:::
-
-## `DT::datatable()` {.smaller}
-
-With the `smaller` class in the slide! Ex: `## slide name {.smaller}`
-
-```{r}
-DT::datatable(tab, options = list(pageLength = 5))
-```
-
-## `gt::gt()`
-
-```{r}
-gt::gt(tab)
-```
-
-## `reactable::reactable()`
-
-```{r}
-reactable::reactable(tab)
-```
-
-## Diagrams with Mermaid!
-
-Read about how to create a diagram in this [post by Mine Çetinkaya-Rundel](https://mine-cetinkaya-rundel.github.io/quarto-tip-a-day/posts/21-diagrams/).
-
-<center>
-
-<blockquote class="twitter-tweet" data-conversation="none">
-
-<p lang="en" dir="ltr">
-
-<a href="https://twitter.com/hashtag/quartotip?src=hash&amp;ref_src=twsrc%5Etfw">#quartotip</a> 21: Create diagrams in Quarto documents using Mermaid or Graphviz in executable code cells, similar to how you create figures.<br><br>Read more: <a href="https://t.co/3qx9oSNCay">https://t.co/3qx9oSNCay</a> <a href="https://t.co/fYzGcISl4h">pic.twitter.com/fYzGcISl4h</a>
-
-</p>
-
-— Quarto (@quarto_pub) <a href="https://twitter.com/quarto_pub/status/1549271325943947270?ref_src=twsrc%5Etfw">July 19, 2022</a>
-
-</blockquote>
-
-```{=html}
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-```
-</center>
-
-## Exporting into PDF
-
-You can use the function `pagedown::chrome_print()` to print the HTML version into a PDF!
-
-``` r
-pagedown::chrome_print("path-to-file.html")
-```
