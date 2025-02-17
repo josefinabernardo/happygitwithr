@@ -19,7 +19,7 @@ format:
 -   Explore and extend a pull request
 -   Make a Github repo browsable
 
-## Chapter 30 - Time Travel: See the past
+# Chapter 30 - Time Travel: See the past
 
 ## Looking at the history of a repository
 
@@ -61,7 +61,7 @@ format:
 
 -   Method A: Browser, command line and RStudio
 
--   Method B: Using `usethis::create_from_github()`
+-   Method B: Using `usethis::create_from_github()` Method C:
 
 ## Method A: Browser, command line and RStudio
 
@@ -78,6 +78,8 @@ format:
     -   Clicking on new branch and pasting the link of the original rep
 
 ![](https://happygitwithr.com/img/rstudio-new-branch.png)
+
+## Method A: Browser, command line and RStudio
 
 -   Use `git fetch upstream` to pull changes from the upstream
 
@@ -101,7 +103,7 @@ usethis::create_from_github("https://github.com/OWNER/REPO")
 
 -   Fork the repository in Github, then clone
 
-![](images/Screenshot 2025-02-16 at 20.24.48.png)
+![](images/Screenshot%202025-02-16%20at%2020.24.48.png)
 
 -   Same advantages as `create_from_github()`
 
@@ -109,25 +111,25 @@ usethis::create_from_github("https://github.com/OWNER/REPO")
 
 -   Might be a good option if you want to avoid using the command line altogether and prefer GUI
 
-![](images/Screenshot 2025-02-16 at 20.41.11.png)
+![](images/Screenshot%202025-02-16%20at%2020.41.11.png)
 
 ## Some useful commands
 
 -   `git remote -v`
 
-![](images/Screenshot 2025-02-16 at 20.43.35.png)
+![](images/Screenshot%202025-02-16%20at%2020.43.35.png)
 
 -   `git remote show origin`
 
-![](images/Screenshot 2025-02-16 at 21.04.36.png)
+![](images/Screenshot%202025-02-16%20at%2021.04.36.png)
 
 ## Don't mess with main
 
 -   Do not make commits to the main of a repo you have forked - this will create discrepancies
 
--   Instead: Use a pull request
+-   Instead: Create a new branch and use a pull request
 
-![](images/Screenshot 2025-02-16 at 21.09.25.png)
+![](images/Screenshot%202025-02-16%20at%2021.09.25.png)
 
 ## What if you have messed with the main?
 
@@ -135,9 +137,9 @@ usethis::create_from_github("https://github.com/OWNER/REPO")
 
 -   In this case no problem, we can sync the fork
 
--   However, we may run into issues
+-   However, we may run into issues if the original main is updated
 
-![](images/Screenshot 2025-02-16 at 21.10.55.png)
+![](images/Screenshot%202025-02-16%20at%2021.10.55.png)
 
 # Chapter 32 - Get upstream changes for a fork
 
@@ -157,13 +159,13 @@ usethis::create_from_github("https://github.com/OWNER/REPO")
 
 -   Use `git branch -vv` to view the upstream tracking branch
 
-![](images/Screenshot 2025-02-16 at 23.16.12.png)
+![](images/Screenshot%202025-02-16%20at%2023.16.12.png)
 
 ## Get changes from upstream
 
--   Create a new branch (treat main as read-only)
+-   Create a new branch (and treat main as read-only)
 
-![](images/Screenshot 2025-02-16 at 23.29.44.png)
+![](images/Screenshot%202025-02-16%20at%2023.29.44.png)
 
 ## Sync by pulling changes from upstream, then push to origin
 
@@ -171,13 +173,35 @@ usethis::create_from_github("https://github.com/OWNER/REPO")
 
 ## Sync by pulling changes from the origin repo
 
+-   Sync fork on Github and pull changes from `origin` repo
+
 ## What if you touched the main?
+
+-   Let's say you have two mains:
+
+    -   The OWNER/REPO: A - B - C - D - E - F
+
+    -   YOUR/REPO: A - B - C - X - Y - Z
+
+-   Create a new branch and switch to it, e.g., `git checkout -b session-06`
+
+-   Then switch back to your main and do a hard reset, e.g., `git checkout main` and then reset the main to the previous compatible commit (`git reset --hard C`)
 
 # Chapter 33 - Explore and extend a pull request
 
+## Terminology
+
+-   Fork branch - branch in your fork from which the PR is made
+
+-   Local PR branch - can be same as fork branch?
+
+-   PR parent - SHA of commit in main repo
+
+-   PR remote - SHA of fork from which PR is made
+
 ## Explore and extend a pull request
 
-![](images/Screenshot 2025-02-16 at 23.55.12.png)
+![](images/Screenshot%202025-02-16%20at%2023.55.12.png)
 
 # Chapter 34 - Make a Github repo browsable
 
