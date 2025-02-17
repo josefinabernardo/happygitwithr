@@ -191,13 +191,15 @@ usethis::create_from_github("https://github.com/OWNER/REPO")
 
 ## Terminology
 
--   Fork branch - branch in your fork from which the PR is made
+-   **Fork branch** - branch in your fork from which the PR is made
 
--   Local PR branch - can be same as fork branch?
+-   **Local PR branch** - local branch you use to work with the PR
 
--   PR parent - SHA of commit in main repo
+-   **PR parent** - SHA of commit in main repo
 
--   PR remote - SHA of fork from which PR is made
+-   **PR remote** - SHA of fork from which PR is made
+
+## Via command line
 
 ## Explore and extend a pull request
 
