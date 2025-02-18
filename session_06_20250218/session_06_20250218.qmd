@@ -193,11 +193,11 @@ usethis::create_from_github("https://github.com/OWNER/REPO")
 
 ## Create a pull request
 
-![](images/Screenshot 2025-02-17 at 20.51.29-02.png)
+![](images/Screenshot%202025-02-17%20at%2020.51.29-02.png)
 
 ## Pull requests with the usethis package
 
-![](images/Screenshot 2025-02-17 at 20.58.45.png)
+![](images/Screenshot%202025-02-17%20at%2020.58.45.png)
 
 <https://usethis.r-lib.org/articles/pr-functions.html>
 
@@ -247,7 +247,7 @@ output: github_document
 
 -   Use t as a file finder
 
-![](images/Screenshot 2025-02-17 at 21.13.07.png)
+![](images/Screenshot%202025-02-17%20at%2021.13.07.png)
 
 ## Other options
 
@@ -255,4 +255,4 @@ output: github_document
 
 -   Github pages, e.g., to host a website for an R package (you can do this via pkgdown)
 
-![](images/Screenshot 2025-02-17 at 21.16.47.png)
+![](images/Screenshot%202025-02-17%20at%2021.16.47.png)
