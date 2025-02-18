@@ -161,7 +161,7 @@ usethis::create_from_github("https://github.com/OWNER/REPO")
 
 -   Use `git branch -vv` to view the upstream tracking branch
 
-![](images/Screenshot 2025-02-18 at 14.23.04.png)
+![](images/Screenshot%202025-02-18%20at%2014.23.04.png)
 
 ## Avoid working on main
 
@@ -174,7 +174,7 @@ usethis::create_from_github("https://github.com/OWNER/REPO")
 
 -   `git pull upstream main --ff-only` and then `git push origin main`
 
-![](images/Screenshot 2025-02-18 at 14.27.21.png)
+![](images/Screenshot%202025-02-18%20at%2014.27.21.png)
 
 ## Sync by pulling changes from the origin repo
 
