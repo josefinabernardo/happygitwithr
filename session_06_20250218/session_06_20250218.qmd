@@ -19,7 +19,7 @@ format:
 -   Explore and extend a pull request
 -   Make a Github repo browsable
 
-## Chapter 30 - Time Travel: See the past
+# Chapter 30 - Time Travel: See the past
 
 ## Looking at the history of a repository
 
@@ -33,11 +33,11 @@ format:
 
 ## Looking at contributors for a specific file
 
--   We can look at the Code, Preview (rendered code) and Blame
+-   By clicking on a specific file we can look at the Code, Preview (rendered code) and Blame
 
 -   Blame is analogous to `git blame`
 
-![](images/Screenshot%202025-02-16%20at%2017.16.24.png)
+![](images/clipboard-2114210381.png)
 
 ## Hyperlinks
 
@@ -45,7 +45,9 @@ format:
 
 <!-- -->
 
--   We can also copy the hyperlink to specific lines, e.g., <https://github.com/rladiesboookclub/happygitwithr/blob/main/README.md?plain=1#L8-L15>
+-   We can also copy the hyperlink to specific lines, e.g., [https://github.com/rladiesboookclub/happygitwithr/blob/main/](https://github.com/rladiesboookclub/happygitwithr/blob/main/README.md?plain=1#L8-L15){.uri}
+
+    [README.md?plain=1#L8-L15](https://github.com/rladiesboookclub/happygitwithr/blob/main/README.md?plain=1#L8-L15){.uri}
 
 # Chapter 31 - Fork and clone
 
@@ -63,17 +65,159 @@ format:
 
 -   Method B: Using `usethis::create_from_github()`
 
+-   Method C: Github Desktop
+
 ## Method A: Browser, command line and RStudio
+
+-   Click fork on the Github page of the original repo (OWNER/REPO) - creates a copy in your account (YOU/REPO)
+
+-   Clone the newly create YOU/REPO onto your machine (`git clone`)
+
+![](images/Screenshot%202025-02-16%20at%2019.21.16-01.png)
+
+## Method A: Browser, command line and RStudio
+
+-   There may be changes in the original repository
+
+-   Highly recommended: Configure the upstream remote in one of these ways
+
+    -   `git remote add upstream https://github.com/OWNER/REPO.git`
+
+    -   `usethis::use_git_remote(name = "upstream", url = "https://github.com/OWNER/REPO.git")`
+
+    -   Clicking on new branch and pasting the link of the original repo
+
+![](images/screenshot-add-upstream.png)
+
+## Method A: Browser, command line and RStudio
+
+-   Use `git fetch upstream` to pull changes from the upstream
+
+-   Use `git branch -u upstream/main` to set the original repo as the tracking branch for your local branch
+
+-   Pushes to and pulls from the original repo automatically
 
 ## Method B: `create_from_github()`
 
+-   This is much quicker and easier
+
+```         
+usethis::create_from_github("https://github.com/OWNER/REPO")
+```
+
+-   Automatically stets the upstream as the tracking branch
+
+## Method C: Github Desktop
+
+-   Download Github Desktop and connect your Github account
+
+-   Fork the repository in Github, then clone
+
+![](images/Screenshot%202025-02-16%20at%2020.24.48.png)
+
+-   Same advantages as `create_from_github()`
+
+## Method C: Github Desktop
+
+-   Might be a good option if you want to avoid using the command line altogether and prefer GUI
+
+![](images/Screenshot%202025-02-16%20at%2020.41.11.png)
+
+## Some useful commands
+
+-   `git remote -v`
+
+![](images/Screenshot%202025-02-16%20at%2020.43.35.png)
+
+-   `git remote show origin`
+
+![](images/Screenshot%202025-02-16%20at%2021.04.36.png)
+
+## Don't mess with main
+
+-   Do not make commits to the main of a repo you have forked - this will create discrepancies
+
+-   Instead: Create a new branch and use a pull request
+
+![](images/Screenshot%202025-02-16%20at%2021.09.25.png)
+
+## What if you have messed with the main?
+
+-   It's recommended to always work in a new branch and not in the main of your forked repo
+
+-   In this case no problem, we can sync the fork
+
+-   However, we may run into issues if the original main is updated
+
+![](images/Screenshot%202025-02-16%20at%2021.10.55.png)
+
 # Chapter 32 - Get upstream changes for a fork
 
-## Get upstream changes for a fork
+## When do we need to get upstream changes?
+
+-   This is meant for when we fork & clone and there is an update to the OWNER/REPO (source repo)
+
+![](https://happygitwithr.com/img/fork-them-pull-request.jpeg)
+
+## Preparing for getting upstream changes
+
+-   List your remotes:
+
+    -   `git remote -v` in the command line
+
+    -   `usethis::git_remotes()` in the console
+
+-   Use `git branch -vv` to view the upstream tracking branch
+
+![](images/Screenshot%202025-02-16%20at%2023.16.12.png)
+
+## Get changes from upstream
+
+-   Create a new branch (and treat main as read-only)
+
+![](images/Screenshot%202025-02-16%20at%2023.29.44.png)
+
+## Sync by pulling changes from upstream, then push to origin
+
+-   `git pull upstream main --ff-only` and then `git push origin main`
+
+## Sync by pulling changes from the origin repo
+
+-   Sync fork on Github and pull changes from `origin` repo
+
+## What if you touched the main?
+
+-   Let's say you have two mains:
+
+    -   The OWNER/REPO: A - B - C - D - E - F
+
+    -   YOUR/REPO: A - B - C - X - Y - Z
+
+-   Create a new branch and switch to it, e.g., `git checkout -b session-06`
+
+-   Then switch back to your main and do a hard reset, e.g., `git checkout main` and then reset the main to the previous compatible commit (`git reset --hard C`)
 
 # Chapter 33 - Explore and extend a pull request
 
-## Explore and extend a pull request
+## Create a pull request
+
+![](images/Screenshot%202025-02-17%20at%2020.51.29-02.png)
+
+## Pull requests with the usethis package
+
+![](images/Screenshot%202025-02-17%20at%2020.58.45.png)
+
+<https://usethis.r-lib.org/articles/pr-functions.html>
+
+## General steps
+
+-   Fork and clone the original repository
+
+-   Branch and make your change
+
+-   Submit a pull request
+
+-   Review pull request, merge and finish
 
 # Chapter 34 - Make a Github repo browsable
 
@@ -105,163 +249,18 @@ output: github_document
 ---
 ```
 
-## 
+## Other options
 
-## Quarto
+-   README.md files as a sort of landing page
 
-Quarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see <https://quarto.org/docs/presentations/>.
+-   Use t as a file finder
 
-> This is part of the [Quarto documentation](https://quarto.org/docs/presentations/).
+![](images/Screenshot%202025-02-17%20at%2021.13.07.png)
 
-## Bullets
+## Other options
 
-When you click the **Render** button a document will be generated that includes:
+-   Github automatically renders .tsv and .csv files
 
--   Content authored with markdown
--   Output from executable code
+-   Github pages, e.g., to host a website for an R package (you can do this via pkgdown)
 
-> This is part of the [Quarto documentation](https://quarto.org/docs/presentations/).
-
-## Code
-
-When you click the **Render** button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:
-
-```{r}
-#| echo: true
-1 + 1
-```
-
-> This is part of the [Quarto documentation](https://quarto.org/docs/presentations/).
-
-You can also add `text marked as code`!
-
-# New topic! {background-color="#562457"}
-
-To make a slide like this, use:
-
-```         
-# Title of slide {background-color="#562457"}
-```
-
-## Tabset example
-
-::: panel-tabset
-## Example 1
-
-Content here for tabset 1 :)
-
-## Example 2
-
-More content here, for tabset 2 :)
-:::
-
-## Incremental content
-
-Hi!
-
-. . .
-
-Use `. . .` to separate content as an incremental slide!
-
-## You can add R code
-
-```{r}
-#| echo: true
-library(dplyr)
-library(ggplot2)
-g <- starwars |> 
-  ggplot() +
-  geom_point(aes(x = height, y = mass)) +
-  theme_light()
-```
-
-## And show the results aswell :)
-
-```{r}
-#| fig.align: center
-#| echo: true
-g 
-```
-
-## What about tables? {.smaller}
-
-### `knitr::kable()`
-
-::: columns
-::: {.column width="50%"}
-```{r}
-#| label: kable-ex
-#| echo: true
-#| eval: false
-tab <- starwars |>
-  tidyr::drop_na(species) |> 
-  group_by(species) |>
-  summarise(
-    n = n(),
-    mean_heigth = round(mean(height, na.rm = TRUE)),
-    mean_mass = round(mean(mass, na.rm = TRUE))
-  ) |> 
-  slice_max(order_by = n, n = 4) 
-
-knitr::kable(tab)
-```
-:::
-
-::: {.column width="50%"}
-```{r}
-#| label: kable-ex
-#| eval: true
-```
-:::
-:::
-
-## `DT::datatable()` {.smaller}
-
-With the `smaller` class in the slide! Ex: `## slide name {.smaller}`
-
-```{r}
-DT::datatable(tab, options = list(pageLength = 5))
-```
-
-## `gt::gt()`
-
-```{r}
-gt::gt(tab)
-```
-
-## `reactable::reactable()`
-
-```{r}
-reactable::reactable(tab)
-```
-
-## Diagrams with Mermaid!
-
-Read about how to create a diagram in this [post by Mine Çetinkaya-Rundel](https://mine-cetinkaya-rundel.github.io/quarto-tip-a-day/posts/21-diagrams/).
-
-<center>
-
-<blockquote class="twitter-tweet" data-conversation="none">
-
-<p lang="en" dir="ltr">
-
-<a href="https://twitter.com/hashtag/quartotip?src=hash&amp;ref_src=twsrc%5Etfw">#quartotip</a> 21: Create diagrams in Quarto documents using Mermaid or Graphviz in executable code cells, similar to how you create figures.<br><br>Read more: <a href="https://t.co/3qx9oSNCay">https://t.co/3qx9oSNCay</a> <a href="https://t.co/fYzGcISl4h">pic.twitter.com/fYzGcISl4h</a>
-
-</p>
-
-— Quarto (@quarto_pub) <a href="https://twitter.com/quarto_pub/status/1549271325943947270?ref_src=twsrc%5Etfw">July 19, 2022</a>
-
-</blockquote>
-
-```{=html}
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-```
-</center>
-
-## Exporting into PDF
-
-You can use the function `pagedown::chrome_print()` to print the HTML version into a PDF!
-
-``` r
-pagedown::chrome_print("path-to-file.html")
-```
+![](images/Screenshot%202025-02-17%20at%2021.16.47.png)
